@@ -1,4 +1,4 @@
-[The Dataset] (https://developers.teleport.org/api/)
+[The Dataset](https://developers.teleport.org/api/)
 
 # The Research Question: How variable are quality of life and cost of living?
 
