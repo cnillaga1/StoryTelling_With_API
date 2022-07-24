@@ -1,0 +1,101 @@
+---
+title: "How variable are quality and cost of living?"
+author: "Cesar Nillaga"
+date: "4/26/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(httr)
+library(jsonlite)
+library(tidyverse) 
+library(gganimate)
+```
+
+
+### San Diego vs. San Luis Obispo
+
+The following information is from the Teleport API linked below. 
+
+[Teleport API](https://developers.teleport.org/api/)
+
+
+```{r, echo=FALSE}
+res = GET("https://api.teleport.org/api/urban_areas/slug:san-diego/scores/")
+data <- fromJSON(rawToChar(res$content))
+```
+
+
+```{r, echo=FALSE}
+df <- data$categories      # getting quality livings from API for San Diego 
+
+df <- df %>%                             
+   arrange(score_out_of_10) %>%            # arranging scores in descending order 
+   mutate(name = factor(name, name))       # making name a factor for visualization
+```
+
+San Diego, California, is among the top cities with a **free business environment**. According to our city rankings, this is a good place to live with high ratings in **startups**, **venture capital** and **safety**. San Diego is one of the top ten city matches for 1.4% of Teleport users. 
+
+```{r, echo=FALSE}
+df %>%
+  ggplot(aes(x = name, y = score_out_of_10)) +                                
+  geom_segment(aes(x = name, xend = name, y = 0, yend = score_out_of_10), color = "grey") +      
+  geom_point(size = 3, color = "#f3c32c") +
+  coord_flip() +
+  theme_classic()+
+  theme(
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  xlab("") +
+  ylab("Ranking") + 
+  ggtitle("San Diegos Ranking of Quality of living")
+```
+
+
+
+
+```{r, echo=FALSE}
+res1 = GET("https://api.teleport.org/api/urban_areas/slug:san-luis-obispo/scores/")
+data1 <- fromJSON(rawToChar(res1$content))
+```
+
+
+
+```{r, echo=FALSE}
+df1 <- data1$categories      # getting quality livings from API for San Luis Obispo
+
+df1 <- df1 %>%                             
+   arrange(score_out_of_10) %>%            # arranging scores in descending order 
+   mutate(name = factor(name, name))       # making name a factor for visualization
+```
+
+San Luis Obispo, California, is among the top cities with a **free business environment**. According to our city rankings, this is a good place to live with high ratings in **safety**, **healthcare** and **environmental quality**. 
+
+```{r, echo=FALSE}
+df1 %>%
+  ggplot(aes(x = name, y = score_out_of_10)) +                                
+  geom_segment(aes(x = name, xend = name, y = 0, yend = score_out_of_10), color = "grey") +      
+  geom_point(size = 3, color = "#36cc24") +
+  coord_flip() +
+  theme_classic()+
+  theme(
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  xlab("") +
+  ylab("Ranking") + 
+  ggtitle("San Luis Obispo Ranking of Quality of living")
+```
+
