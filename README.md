@@ -19,3 +19,16 @@
 - Be innovative in how you explore and visualize the data.
 
 - Your content should be very brief; no more than one page if the .html were to be printed.
+
+San Diego vs. San Luis Obispo
+The following information is from the Teleport API linked below.
+
+Teleport API
+
+San Diego, California, is among the top cities with a free business environment. According to our city rankings, this is a good place to live with high ratings in startups, venture capital and safety. San Diego is one of the top ten city matches for 1.4% of Teleport users.
+
+![image](https://user-images.githubusercontent.com/102557726/212524912-9df34473-5734-4ec8-83d8-972695af10e8.png)
+
+San Luis Obispo, California, is among the top cities with a free business environment. According to our city rankings, this is a good place to live with high ratings in safety, healthcare and environmental quality.
+
+![image](https://user-images.githubusercontent.com/102557726/212524919-13781225-a1e1-4c0c-8bdd-4a45316d3af4.png)
